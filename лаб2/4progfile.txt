@@ -1,0 +1,14 @@
+firstdeq,seconddeq = deque(),deque()
+with open("book.txt", "r", encoding="utf-8") as books:
+    for line in books:
+        firstdeq.append(line)
+print ("изначальны Файл:\n",*firstdeq)
+while len(firstdeq) != 0:
+    onebook = firstdeq.pop()
+    while len(seconddeq) != 0 and seconddeq[-1]>onebook:
+        firstdeq.appendleft(seconddeq.pop())
+    seconddeq.append(onebook)
+print ("\nОтсортированный файл:\n",*seconddeq)
+with open("1book_sorted.txt", "w", encoding="utf-8") as writefile:
+    for elem in seconddeq:
+        writefile.write(elem)
